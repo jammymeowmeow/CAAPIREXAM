@@ -1,14 +1,22 @@
-let currentQuestionIndex = 0;
-let score = 0; // Score counts only first-time correct answers
-let attemptedQuestions = []; // Track which questions have been attempted
-
-// Shuffle settings
-let shuffleQuestions = false;
-let shuffleChoices = false;
-
-// Question data
+// Question data (questions, choices, and correct answers)
 const questions = [
     {
+        question: "Regulations which refer to 'commercial operators' relate to the person who:",
+        choices: [
+            { text: "For compensation or hire, engages in the carriage by aircraft in air commerce of persons or property, other than as an air carrier.", correct: true },
+            { text: "Owns an aircraft and offers flights for private hire.", correct: false },
+            { text: "Operates an aircraft for recreational purposes.", correct: false }
+        ]
+    },
+ {
+                question: "Regulations which refer to the 'operational control' of a flight are in relation to:",
+                choices: [
+                    { text: "Exercising authority over initiating, conducting, or terminating a flight.", correct: true },
+                    { text: "Monitoring the fuel and weight distribution during the flight.", correct: false },
+                    { text: "Providing emergency services to the flight crew.", correct: false }
+                ]
+            },
+            {
                 question: " an emergency situation, which endangers the safety of the aircraft or persons, necessitates the taking of action, which involves a violation of regulations or procedures by any crewmember, the pilot - in - command shall submit a report on any such violation to the CAAP within:",
                 choices: [
                     { text: "10 days", correct: true },
@@ -80,7 +88,1103 @@ const questions = [
                     { text: "policy procedures of the civil aircraft operator", correct: false }
                 ]
             },
-{
+            {
+                question: "If weather conditions are such that it requires designating an alternate airport on your IFR flight plan, you should plan to carry enough fuel to arrive at the first airport of intended landing, fly from that airport to the alternate airport, fly thereafter.",
+                choices: [
+                    { text: "45 minutes at normal cruising speed.", correct: true },
+                    { text: "1 hour at normal cruising speed.", correct: false },
+                    { text: "30 minutes at slow cruising speed.", correct: false }
+                ]
+            },
+            {
+                question: "Regulations which refer to 'operate' relate to the person who:",
+                choices: [
+                    { text: "Causes the aircraft to be used or authorizes its use.", correct: true },
+                    { text: "Has ownership of the aircraft.", correct: false },
+                    { text: "Is the operator responsible for the airworthiness of the aircraft.", correct: false }
+                ]
+            },
+            {
+                question: "Which is the correct symbol for the stalling speed or minimum steady flight speed in a specified configuration?",
+                choices: [
+                    { text: "VS1", correct: true },
+                    { text: "VNO", correct: false },
+                    { text: "VFE", correct: false }
+                ]
+            },
+            {
+                question: "Which is the correct symbol for the stalling speed or the minimum steady flight speed at which the airplane is controllable?",
+                choices: [
+                    { text: "VS", correct: true },
+                    { text: "VNE", correct: false },
+                    { text: "VX", correct: false }
+                ]
+            },
+             {
+        question: "Regulations which refer to 'commercial operators' relate to the person who:",
+        choices: [
+            { text: "For compensation or hire, engages in the carriage by aircraft in air commerce of persons or property, other than as an air carrier.", correct: true },
+            { text: "Owns an aircraft and offers flights for private hire.", correct: false },
+            { text: "Operates an aircraft for recreational purposes.", correct: false }
+        ]
+    },
+    {
+        question: "Regulations which refer to the 'operational control' of a flight are in relation to:",
+        choices: [
+            { text: "Exercising authority over initiating, conducting, or terminating a flight.", correct: true },
+            { text: "Monitoring the fuel and weight distribution during the flight.", correct: false },
+            { text: "Providing emergency services to the flight crew.", correct: false }
+        ]
+    },
+    {
+        question: "Regulations which refer to 'operate' relate to the person who:",
+        choices: [
+            { text: "Causes the aircraft to be used or authorizes its use.", correct: true },
+            { text: "Has ownership of the aircraft.", correct: false },
+            { text: "Is the operator responsible for the airworthiness of the aircraft.", correct: false }
+        ]
+    },
+    {
+        question: "Which is the correct symbol for the stalling speed or minimum steady flight speed in a specified configuration?",
+        choices: [
+            { text: "VS1", correct: true },
+            { text: "VNO", correct: false },
+            { text: "VFE", correct: false }
+        ]
+    },
+    {
+        question: "Which is the correct symbol for the stalling speed or the minimum steady flight speed at which the airplane is controllable?",
+        choices: [
+            { text: "VS", correct: true },
+            { text: "VNE", correct: false },
+            { text: "VX", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VF as:",
+        choices: [
+            { text: "Design flap speed", correct: true },
+            { text: "Maximum flap extended speed", correct: false },
+            { text: "Minimum approach speed", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VNO as:",
+        choices: [
+            { text: "Maximum structural cruising speed", correct: true },
+            { text: "Never-exceed speed", correct: false },
+            { text: "Speed for maximum rate of climb", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VLE as:",
+        choices: [
+            { text: "Maximum landing gear extended speed", correct: true },
+            { text: "Minimum operating speed", correct: false },
+            { text: "Maximum operational speed", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VNE as:",
+        choices: [
+            { text: "Never-exceed speed", correct: true },
+            { text: "Maximum flaps extended speed", correct: false },
+            { text: "Maximum lift-off speed", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines Vy as:",
+        choices: [
+            { text: "Speed for best RATE of climb", correct: true },
+            { text: "Speed for best angle of climb", correct: false },
+            { text: "Speed for minimum drag", correct: false }
+        ]
+    },
+    {
+        question: "Regulations which refer to 'commercial operators' relate to the person who:",
+        choices: [
+            { text: "For compensation or hire, engages in the carriage by aircraft in air commerce of persons or property, other than as an air carrier.", correct: true },
+            { text: "Owns an aircraft and offers flights for private hire.", correct: false },
+            { text: "Operates an aircraft for recreational purposes.", correct: false }
+        ]
+    },
+    {
+        question: "Regulations which refer to the 'operational control' of a flight are in relation to:",
+        choices: [
+            { text: "Exercising authority over initiating, conducting, or terminating a flight.", correct: true },
+            { text: "Monitoring the fuel and weight distribution during the flight.", correct: false },
+            { text: "Providing emergency services to the flight crew.", correct: false }
+        ]
+    },
+    {
+        question: "Regulations which refer to 'operate' relate to the person who:",
+        choices: [
+            { text: "Causes the aircraft to be used or authorizes its use.", correct: true },
+            { text: "Has ownership of the aircraft.", correct: false },
+            { text: "Is the operator responsible for the airworthiness of the aircraft.", correct: false }
+        ]
+    },
+    {
+        question: "Which is the correct symbol for the stalling speed or minimum steady flight speed in a specified configuration?",
+        choices: [
+            { text: "VS1", correct: true },
+            { text: "VNO", correct: false },
+            { text: "VFE", correct: false }
+        ]
+    },
+    {
+        question: "Which is the correct symbol for the stalling speed or the minimum steady flight speed at which the airplane is controllable?",
+        choices: [
+            { text: "VS", correct: true },
+            { text: "VNE", correct: false },
+            { text: "VX", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VF as:",
+        choices: [
+            { text: "Design flap speed", correct: true },
+            { text: "Maximum flap extended speed", correct: false },
+            { text: "Minimum approach speed", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VNO as:",
+        choices: [
+            { text: "Maximum structural cruising speed", correct: true },
+            { text: "Never-exceed speed", correct: false },
+            { text: "Speed for maximum rate of climb", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VLE as:",
+        choices: [
+            { text: "Maximum landing gear extended speed", correct: true },
+            { text: "Minimum operating speed", correct: false },
+            { text: "Maximum operational speed", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VNE as:",
+        choices: [
+            { text: "Never-exceed speed", correct: true },
+            { text: "Maximum flaps extended speed", correct: false },
+            { text: "Maximum lift-off speed", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines Vy as:",
+        choices: [
+            { text: "Speed for best RATE of climb", correct: true },
+            { text: "Speed for best angle of climb", correct: false },
+            { text: "Speed for minimum drag", correct: false }
+        ]
+    },
+    {
+        question: "14 CFR Part 1 defines VNO as:",
+        choices: [
+            { text: "Maximum structural cruising speed", correct: true },
+            { text: "Never-exceed speed", correct: false },
+            { text: "Minimum safe speed for maneuvering", correct: false }
+        ]
+    },
+    {
+        question: "If an airplane category is listed as utility, it would mean that this airplane could be operated in which of the following maneuvers?",
+        choices: [
+            { text: "Limited acrobatics, including spins (if approved)", correct: true },
+            { text: "Full aerobatics with no restrictions", correct: false },
+            { text: "Only general aviation maneuvers, no spins allowed", correct: false }
+        ]
+    },
+    {
+        question: "Commercial pilots are required to have a valid and appropriate pilot certificate in their physical possession or readily accessible in the aircraft when:",
+        choices: [
+            { text: "Acting as pilot in command", correct: true },
+            { text: "Flying outside of U.S. airspace", correct: false },
+            { text: "Flying an aircraft that requires a type rating", correct: false }
+        ]
+    },
+    {
+        question: "Which of the following are considered aircraft class ratings?",
+        choices: [
+            { text: "Single-engine land, multiengine land, single-engine sea, and multi-engine sea", correct: true },
+            { text: "Single-engine, multi-engine, and rotorcraft", correct: false },
+            { text: "Commercial, private, and student ratings", correct: false }
+        ]
+    },
+    {
+        question: "A pilot convicted of operating a motor vehicle while either intoxicated by, impaired by, or under the influence of alcohol or a drug is required to provide a:",
+        choices: [
+            { text: "Written report to the FAA Civil Aviation Security Division (AMC-700) not later than 60 days after the conviction", correct: true },
+            { text: "Notification to the NTSB within 48 hours of the conviction", correct: false },
+            { text: "Notice to the FAA upon request", correct: false }
+        ]
+    },
+    {
+        question: "A pilot convicted of a motor vehicle offense involving alcohol or drugs is required to provide a written report to the:",
+        choices: [
+            { text: "AMC-700 within 60 days after such action", correct: true },
+            { text: "FAA immediately after the conviction", correct: false },
+            { text: "NTSB if the conviction affects flight privileges", correct: false }
+        ]
+    },
+    {
+        question: "A pilot convicted for the violation of any Federal or State statute relating to the process, manufacture, transportation, distribution, or sale of narcotic drugs is grounds for:",
+        choices: [
+            { text: "Suspension or revocation of any certificate, rating, or authorization issued under 14 CFR part 61", correct: true },
+            { text: "A probation period before further flight privileges are granted", correct: false },
+            { text: "A temporary suspension of flight privileges for 6 months", correct: false }
+        ]
+    },
+    {
+        question: "A pilot convicted of operating an aircraft as a crew member under the influence of alcohol, or using drugs that affect the person’s faculties, is grounds for:",
+        choices: [
+            { text: "Denial of an application for an FAA certificate, rating, or authorization issued under 14 CFR part 61", correct: true },
+            { text: "A 6-month suspension of their medical certificate", correct: false },
+            { text: "A warning issued by the FAA with no further action", correct: false }
+        ]
+    },
+    {
+        question: "Does a commercial pilot certificate have a specific expiration date?",
+        choices: [
+            { text: "No, it is issued without an expiration date", correct: true },
+            { text: "Yes, it must be renewed every 2 years", correct: false },
+            { text: "Yes, it expires after 5 years from issuance", correct: false }
+        ]
+    },
+    {
+        question: "A second-class medical certificate issued to a commercial pilot on April 10, this year, permits the pilot to exercise which of the following privileges?",
+        choices: [
+            { text: "Commercial pilot privileges through April 30, next year", correct: true },
+            { text: "Commercial pilot privileges only until the end of this year", correct: false },
+            { text: "No privileges unless renewed every 6 months", correct: false }
+        ]
+    },
+    {
+        question: "When is the pilot in command required to hold a category and class rating appropriate to the aircraft being flown?",
+        choices: [
+            { text: "On flight when carrying another person", correct: true },
+            { text: "On flights over 25 nautical miles", correct: false },
+            { text: "On flights at night only", correct: false }
+        ]
+    },
+    {
+        question: "Unless otherwise authorized, the pilot in command is required to hold a type rating when operating any:",
+        choices: [
+            { text: "Aircraft of more than 12,500 pounds maximum certificated takeoff weight", correct: true },
+            { text: "Aircraft certified for IFR operations only", correct: false },
+            { text: "Aircraft equipped with more than one engine", correct: false }
+        ]
+    },
+    {
+        question: "To act as PIC of an airplane that is equipped with retractable landing gear, flaps, and controllable pitch propeller, a person is required to:",
+        choices: [
+            { text: "Receive and log ground and flight training in such an airplane, obtain a logbook endorsement certifying proficiency", correct: true },
+            { text: "Have 10 hours of flight experience in similar airplanes", correct: false },
+            { text: "Hold a commercial pilot certificate", correct: false }
+        ]
+    },
+    {
+        question: "To act as PIC of an airplane with more than 200 hp, a person is required to:",
+        choices: [
+            { text: "Receive and log ground and flight training from an authorized instructor in such an airplane", correct: true },
+            { text: "Have at least 50 hours of flight experience in high-performance airplanes", correct: false },
+            { text: "Hold a type rating for such airplanes", correct: false }
+        ]
+    },
+    {
+        question: "To act as PIC of a tailwheel airplane, without prior experience, a pilot must:",
+        choices: [
+            { text: "Receive and log flight training from an authorized instructor", correct: true },
+            { text: "Pass a written knowledge test for tailwheel operations", correct: false },
+            { text: "Complete 5 takeoffs and landings in a tailwheel airplane", correct: false }
+        ]
+    },
+    {
+        question: "What flight time may a pilot log as second in command?",
+        choices: [
+            { text: "All flight time WHEN QUALIFIED and occupying a crewmember station in an aircraft that requires more than 1 pilot", correct: true },
+            { text: "Any time spent in the cockpit observing the operation of the aircraft", correct: false },
+            { text: "Flight time while under the supervision of a flight instructor", correct: false }
+        ]
+    },
+    {
+        question: "What flight time must be documented and recorded by a pilot exercising the privileges of a commercial certificate?",
+        choices: [
+            { text: "Flight time showing training and aeronautical experience to meet requirements for a certificate, rating, or flight review", correct: true },
+            { text: "All flight time logged in any type of aircraft", correct: false },
+            { text: "Flight time conducted in IMC conditions", correct: false }
+        ]
+    },
+    {
+        question: "To serve as second in command of an airplane that is certificated for more than one pilot crewmember, and operated under part 91, a person must:",
+        choices: [
+            { text: "Within the last 12 months, become familiar with the required information, and perform and log pilot time in the type of airplane for which privileges are requested", correct: true },
+            { text: "Hold a commercial pilot certificate", correct: false },
+            { text: "Have at least 100 hours of total flight time", correct: false }
+        ]
+    },
+    {
+        question: "To act as PIC of an aircraft under 14 CFR part 91, a commercial pilot must have satisfactorily accomplished a flight review or completed a proficiency check within the preceding:",
+        choices: [
+            { text: "24 months", correct: true },
+            { text: "12 months", correct: false },
+            { text: "36 months", correct: false }
+        ]
+    },
+    {
+        question: "If a pilot does not meet the recency of experience requirements for night flight and official sunset is 1900 CST, the latest time passengers should be carried is:",
+        choices: [
+            { text: "1959 CST", correct: true },
+            { text: "2000 CST", correct: false },
+            { text: "2030 CST", correct: false }
+        ]
+    },
+    {
+        question: "Prior to carrying passengers at night, the PIC must have accomplished the required takeoffs and landings in:",
+        choices: [
+            { text: "The same category, class, and type of aircraft (if a type rating is required)", correct: true },
+            { text: "Any aircraft within the same category and class", correct: false },
+            { text: "A single-engine aircraft, regardless of category or class", correct: false }
+        ]
+    },
+    {
+        question: "No pilot may act as PIC of an aircraft under IFR or in weather conditions less than the minimums prescribed for VFR unless that pilot has, within the last 6 months, performed and logged under actual or simulated instrument conditions, at least:",
+        choices: [
+            { text: "6 instrument approaches, holding procedures, intercepting and tracking courses, or passed an instrument proficiency check in an aircraft that is appropriate to the aircraft category", correct: true },
+            { text: "3 instrument approaches and one holding procedure", correct: false },
+            { text: "A minimum of 10 hours of instrument flight time", correct: false }
+        ]
+    },
+    {
+        question: "To serve as PIC of an airplane that is certified for more than one pilot crewmember, and operated under part 91, a person must:",
+        choices: [
+            { text: "Complete a PIC proficiency check within the preceding 12 months in an airplane that is type certificated for more than one pilot", correct: true },
+            { text: "Hold a second-in-command endorsement", correct: false },
+            { text: "Pass a written knowledge test for the type of airplane", correct: false }
+        ]
+    },
+    {
+        question: "Pilots who change their permanent mailing address and fail to notify the FAA Airmen Certification Branch of this change, are entitled to exercise the privileges of their pilot certificate for a period of:",
+        choices: [
+            { text: "30 days", correct: true },
+            { text: "60 days", correct: false },
+            { text: "90 days", correct: false }
+        ]
+    },
+    {
+        question: "To act as PIC of an airplane towing a glider, a pilot must have accomplished, within 12 months, at least:",
+        choices: [
+            { text: "3 actual or simulated glider tows while accompanied by a qualified tow pilot", correct: true },
+            { text: "5 solo glider tows", correct: false },
+            { text: "10 glider flights as a pilot or passenger", correct: false }
+        ]
+    },
+    {
+        question: "To act as PIC of an airplane towing a glider, the tow pilot is required to have:",
+        choices: [
+            { text: "A logbook endorsement from an authorized glider instructor certifying receipt of ground and flight training in gliders, and be proficient with techniques and procedures for safe towing of gliders", correct: true },
+            { text: "At least 50 hours of flight time towing gliders", correct: false },
+            { text: "A type rating for glider towing operations", correct: false }
+        ]
+    },
+    {
+        question: "What limitation is imposed on a newly certificated commercial pilot-airplane, if that person does not hold an instrument rating? The carriage of passengers:",
+        choices: [
+            { text: "For hire on cross-country flights IN EXCESS of 50 NM, or for hire at night is prohibited", correct: true },
+            { text: "Is limited to day VFR operations only", correct: false },
+            { text: "Is prohibited entirely until the instrument rating is obtained", correct: false }
+        ]
+    },
+    {
+        question: "A person with a Commercial Pilot certificate may act as PIC of an aircraft for compensation or hire, if that person:",
+        choices: [
+            { text: "Is qualified in accordance with 14 CFR part 61 and with the applicable parts that apply to the operation", correct: true },
+            { text: "Has a type rating for the specific aircraft", correct: false },
+            { text: "Has logged at least 500 hours of total flight time", correct: false }
+        ]
+    },
+    {
+        question: "What action must be taken when a pilot in command deviated from any rule in 14 CFR part 91?",
+        choices: [
+            { text: "Upon the request of the Administrator, send a written report of that deviation to the Administrator", correct: true },
+            { text: "File a voluntary deviation report within 24 hours", correct: false },
+            { text: "Notify air traffic control immediately", correct: false }
+        ]
+    },
+    {
+        question: "What person is directly responsible for the final authority as to the operation of the airplane?",
+        choices: [
+            { text: "Pilot in command", correct: true },
+            { text: "Owner of the aircraft", correct: false },
+            { text: "The mechanic who last inspected the aircraft", correct: false }
+        ]
+    },
+    {
+        question: "Who is responsible for determining if an aircraft is in condition for safe flight?",
+        choices: [
+            { text: "Pilot in command", correct: true },
+            { text: "Aircraft owner", correct: false },
+            { text: "Certified aircraft mechanic", correct: false }
+        ]
+    },
+    {
+        question: "When operating a US-registered civil aircraft, which document is required by regulation to be available in the aircraft?",
+        choices: [
+            { text: "A current, approved Airplane Flight Manual", correct: true },
+            { text: "The aircraft maintenance records", correct: false },
+            { text: "A copy of the latest NOTAMs", correct: false }
+        ]
+    },
+    {
+        question: "A PIC of a civil aircraft may not allow any object to be dropped from that aircraft in flight:",
+        choices: [
+            { text: "If it creates a hazard to persons and property", correct: true },
+            { text: "Without first notifying air traffic control", correct: false },
+            { text: "Unless the aircraft is below 500 feet AGL", correct: false }
+        ]
+    },
+    {
+        question: "Portable electronic devices which may cause interference with the navigation or communication system may not be operated on a US-registered civil aircraft being flown:",
+        choices: [
+            { text: "In air carrier operations", correct: true },
+            { text: "By a commercial pilot", correct: false },
+            { text: "Under Part 91 operations", correct: false }
+        ]
+    },
+    {
+        question: "Portable electronic devices which may cause interference with the navigation or communication system may not be operated on a US-registered civil aircraft being operated:",
+        choices: [
+            { text: "Under IFR", correct: true },
+            { text: "By a private pilot", correct: false },
+            { text: "During VFR operations", correct: false }
+        ]
+    },
+    {
+        question: "No person may operate a large civil aircraft of US registry which is subject to a lease, unless the lessee has mailed a copy of the lease to the FAA Aircraft Registration Branch, Oklahoma City, within how many hours of its execution?",
+        choices: [
+            { text: "24", correct: true },
+            { text: "48", correct: false },
+            { text: "12", correct: false }
+        ]
+    },
+    {
+        question: "When is preflight action required, relative to alternatives available, if the planned flight cannot be completed?",
+        choices: [
+            { text: "Any flight not in the vicinity of an airport", correct: true },
+            { text: "Only IFR flights", correct: false },
+            { text: "Flights exceeding 50 nautical miles", correct: false }
+        ]
+    },
+    {
+        question: "The required preflight action relative to weather reports and fuel requirements is applicable to:",
+        choices: [
+            { text: "Any flight not in the vicinity of an airport", correct: true },
+            { text: "Flights conducted above 10,000 feet MSL", correct: false },
+            { text: "Only IFR flights", correct: false }
+        ]
+    },
+    {
+        question: "Before beginning any flight under IFR, the PIC must become familiar with all available information concerning that flight. In addition, the pilot must:",
+        choices: [
+            { text: "Be familiar with the runway lengths at airports of intended use, and the alternatives available, if the flight cannot be completed", correct: true },
+            { text: "Contact air traffic control for updated NOTAMs", correct: false },
+            { text: "Perform a test of all navigation systems", correct: false }
+        ]
+    },
+    {
+        question: "Required flight crewmembers’ seatbelts must be fastened:",
+        choices: [
+            { text: "While the crewmembers are at their stations", correct: true },
+            { text: "Only during turbulence", correct: false },
+            { text: "When instructed by air traffic control", correct: false }
+        ]
+    },
+    {
+        question: "Each required flight crewmember is required to keep his or her shoulder harness fastened:",
+        choices: [
+            { text: "During takeoff and landing, unless he or she is unable to perform required duties", correct: true },
+            { text: "At all times during flight", correct: false },
+            { text: "Only when instructed by the PIC", correct: false }
+        ]
+    },
+    {
+        question: "With US-registered civil airplanes, the use of safety belts is required during movement on the surface, takeoffs, and landings for:",
+        choices: [
+            { text: "Each person over 2 years of age on board", correct: true },
+            { text: "Only flight crewmembers", correct: false },
+            { text: "All passengers, regardless of age", correct: false }
+        ]
+    },
+    {
+        question: "Operating regulations for US-registered civil airplanes require that during movement on the surface, takeoffs, and landings, a seat belt and shoulder harness (if installed) must be properly secured about each:",
+        choices: [
+            { text: "Person on board", correct: true },
+            { text: "Flight crewmember", correct: false },
+            { text: "Passenger only", correct: false }
+        ]
+    },
+    {
+        question: "No person may operate an aircraft in simulated instrument flight conditions unless the:",
+        choices: [
+            { text: "Other control seat is occupied by a SAFETY PILOT, who holds at least a private pilot certificate and is appropriately rated", correct: true },
+            { text: "Other control seat is occupied by a CFI", correct: false },
+            { text: "Aircraft is equipped with a functioning autopilot system", correct: false }
+        ]
+    },
+    {
+        question: "Which is true with respect to formation flights? Formation flights are:",
+        choices: [
+            { text: "Not authorized when carrying passengers for hire", correct: true },
+            { text: "Authorized with ATC approval", correct: false },
+            { text: "Allowed as long as pilots maintain visual separation", correct: false }
+        ]
+    },
+    {
+        question: "Which is true with respect to operating near other aircraft in flight? They are:",
+        choices: [
+            { text: "Not authorized, when operated so close to another aircraft they can create a collision hazard", correct: true },
+            { text: "Permitted if both pilots agree on separation distance", correct: false },
+            { text: "Allowed only during daylight hours", correct: false }
+        ]
+    },
+    {
+        question: "Which is true with respect to formation flights? Formation flights are:",
+        choices: [
+            { text: "Not authorized, except by arrangement with the PIC of each aircraft", correct: true },
+            { text: "Authorized with FAA approval", correct: false },
+            { text: "Allowed only with one aircraft under IFR", correct: false }
+        ]
+    },
+    {
+        question: "Airplane A is overtaking Airplane B. Which airplane has the right of way?",
+        choices: [
+            { text: "Airplane B; the pilot should expect to be passed on the right", correct: true },
+            { text: "Airplane A; overtaking aircraft always has priority", correct: false },
+            { text: "Neither; right of way is determined by altitude", correct: false }
+        ]
+    },
+    {
+        question: "An airplane is overtaking a helicopter. Which aircraft has the right of way?",
+        choices: [
+            { text: "Helicopter; the pilot should expect to be passed on the right", correct: true },
+            { text: "Airplane; airplanes always have priority over helicopters", correct: false },
+            { text: "Neither; right of way depends on airspeed", correct: false }
+        ]
+    },
+    {
+        question: "Two aircraft of the same category are approaching an airport for the purpose of landing. The right of way belongs to the one:",
+        choices: [
+            { text: "At a lower altitude, but the pilot shall not take advantage of this rule to cut in front of or to overtake the other aircraft", correct: true },
+            { text: "Closest to the runway threshold", correct: false },
+            { text: "That makes the first call to ATC", correct: false }
+        ]
+    },
+    {
+        question: "During a night operation, the pilot of #1 sees only the green light of #2. Who has the right of way?",
+        choices: [
+            { text: "#1; because #1 is to the right of #2", correct: true },
+            { text: "#2; because #2 is on the left of #1", correct: false },
+            { text: "Neither; right of way depends on altitude", correct: false }
+        ]
+    },
+    {
+        question: "A pilot flying a single-engine airplane observes a multi-engine airplane approaching from the left. Which pilot should give way?",
+        choices: [
+            { text: "The pilot of the multi-engine airplane should give way; the single-engine airplane is to its right", correct: true },
+            { text: "The pilot of the single-engine airplane should give way; the multi-engine airplane has priority", correct: false },
+            { text: "Neither; both should turn to the left", correct: false }
+        ]
+    },
+    {
+        question: "While in flight, a helicopter and an airplane are converging at a 90-degree angle, and the helicopter is located to the right of the plane. Which one has the right of way?",
+        choices: [
+            { text: "Helicopter; it is to the right of the plane", correct: true },
+            { text: "Airplane; it has priority over helicopters", correct: false },
+            { text: "Neither; priority is determined by altitude", correct: false }
+        ]
+    },
+    {
+        question: "What altimeter setting is required when operating an aircraft at 18,000 feet MSL?",
+        choices: [
+            { text: "29.92 Hg", correct: true },
+            { text: "30.00 Hg", correct: false },
+            { text: "31.00 Hg", correct: false }
+        ]
+    },
+    {
+        question: "After an ATC clearance has been obtained, a pilot may not deviate from that clearance unless the pilot:",
+        choices: [
+            { text: "Receives an amended clearance or has an emergency", correct: true },
+            { text: "Notifies ATC after deviation", correct: false },
+            { text: "Receives approval from another flight crew", correct: false }
+        ]
+    },
+    {
+        question: "When weather information indicates that abnormally high barometric pressure exists, or will be above ___ inches of mercury, flight operations will not be authorized contrary to the requirements published in NOTAMs:",
+        choices: [
+            { text: "31.00", correct: true },
+            { text: "30.50", correct: false },
+            { text: "30.92", correct: false }
+        ]
+    },
+    {
+        question: "What is the minimum flight visibility and proximity to cloud requirements for VFR flight, at 6,500 feet MSL, in Class C, D, and E airspace?",
+        choices: [
+            { text: "3 miles visibility; 1000 feet above and 500 feet below", correct: true },
+            { text: "1 mile visibility; clear of clouds", correct: false },
+            { text: "5 miles visibility; 2000 feet horizontal", correct: false }
+        ]
+    },
+    {
+        question: "The minimum flight visibility for VFR flight increases to 5 SM beginning at an altitude of:",
+        choices: [
+            { text: "10,000 feet MSL if above 1200 feet AGL", correct: true },
+            { text: "12,000 feet MSL", correct: false },
+            { text: "7,000 feet MSL if above 1,200 feet AGL", correct: false }
+        ]
+    },
+    {
+        question: "VFR cruising altitudes are required to be maintained when flying:",
+        choices: [
+            { text: "More than 3,000 feet AGL; based on magnetic course", correct: true },
+            { text: "At or below 3,000 feet AGL", correct: false },
+            { text: "Only during cross-country flights", correct: false }
+        ]
+    },
+    {
+        question: "If weather conditions are such that it is required to designate an alternate airport on your IFR flight plan, you should plan to carry enough fuel to arrive at the first airport of intended landing, fly from that airport to the alternate, and fly thereafter for:",
+        choices: [
+            { text: "45 minutes at normal cruising speed", correct: true },
+            { text: "30 minutes at maximum speed", correct: false },
+            { text: "60 minutes at reduced speed", correct: false }
+        ]
+    },
+    {
+        question: "For an airport with an approved instrument approach to be listed as an alternate airport on an IFR flight plan, the forecasted weather conditions at the time of arrival must be at or above the following weather minimums:",
+        choices: [
+            { text: "Ceiling 800 feet and visibility 2 SM for NON PRECISION", correct: true },
+            { text: "Ceiling 1000 feet and visibility 3 SM for NON PRECISION", correct: false },
+            { text: "Ceiling 600 feet and visibility 2 SM for PRECISION", correct: false }
+        ]
+    },
+    {
+        question: "For an airport without an approved instrument approach procedure to be listed as an alternate airport on an IFR flight plan, the forecasted weather conditions at the time of arrival must have at least a:",
+        choices: [
+            { text: "Ceiling and visibility that allows for descent, approach, and landing on their basic VFR", correct: true },
+            { text: "Minimum ceiling of 1000 feet and visibility of 3 SM", correct: false },
+            { text: "Clearance above all obstacles within a 10-mile radius", correct: false }
+        ]
+    },
+    {
+        question: "When must an operational check on the aircraft VOR equipment be accomplished to operate under IFR?",
+        choices: [
+            { text: "Within the preceding 30 days", correct: true },
+            { text: "Within the preceding 60 days", correct: false },
+            { text: "Annually", correct: false }
+        ]
+    },
+    {
+        question: "What is the maximum bearing error allowed for an operational VOR equipment check when using an FAA-approved ground test signal?",
+        choices: [
+            { text: "4 degrees", correct: true },
+            { text: "6 degrees", correct: false },
+            { text: "3 degrees", correct: false }
+        ]
+    },
+    {
+        question: "Which data must be recorded in the aircraft logbook or other record by a pilot making a VOR operational check for IFR operations?",
+        choices: [
+            { text: "Date of check, place of operational check, bearing error, and signature", correct: true },
+            { text: "Aircraft type, time of check, and weather conditions", correct: false },
+            { text: "Date of check and weather visibility conditions", correct: false }
+        ]
+    },
+    {
+        question: "On an instrument approach where a DH or MDA is applicable, a pilot may not operate below or continue the approach unless the:",
+        choices: [
+            { text: "Aircraft is continuously in position from which a descent to a normal landing on the intended runway can be made", correct: true },
+            { text: "Runway environment is visible at all times", correct: false },
+            { text: "Aircraft is at or below the minimum descent altitude", correct: false }
+        ]
+    },
+    {
+        question: "Pilots are not authorized to land an aircraft from an instrument approach unless the:",
+        choices: [
+            { text: "Flight visibility is at, or exceeds, the visibility prescribed in the approach procedure being used", correct: true },
+            { text: "Ceiling is at least 200 feet above DH or MDA", correct: false },
+            { text: "Runway lights are visible", correct: false }
+        ]
+    },
+    {
+        question: "A pilot performing a published instrument approach is not authorized to perform a procedure turn when:",
+        choices: [
+            { text: "Receiving a radar vector to a final approach course or fix", correct: true },
+            { text: "Below the minimum descent altitude", correct: false },
+            { text: "Within 10 miles of the airport", correct: false }
+        ]
+    },
+    {
+        question: "Except when necessary for takeoff or landing, unless otherwise authorized by the Administrator, the minimum altitude for IFR flight is:",
+        choices: [
+            { text: "2000 feet above the highest obstacle over designated mountainous terrain; 1000 feet above the highest obstacle over terrain elsewhere", correct: true },
+            { text: "1000 feet above ground level at all times", correct: false },
+            { text: "1500 feet above the highest terrain", correct: false }
+        ]
+    },
+    {
+        question: "The PIC of an aircraft operated under IFR, in controlled airspace not in radar contact, shall report by radio as soon as possible when:",
+        choices: [
+            { text: "Passing each designated reporting point, to include time and altitude", correct: true },
+            { text: "Changing the flight level", correct: false },
+            { text: "Reaching 1000 feet above the assigned altitude", correct: false }
+        ]
+    },
+    {
+        question: "The PIC of an aircraft operated under IFR, in controlled airspace, shall report as soon as practical to ATC when:",
+        choices: [
+            { text: "Experiencing any malfunctions of navigational, approach, or communications equipment, occurring in flight", correct: true },
+            { text: "Diverting from the assigned route", correct: false },
+            { text: "Descending below the minimum descent altitude", correct: false }
+        ]
+    },
+    {
+        question: "Which is required equipment for powered aircraft during VFR night flights?",
+        choices: [
+            { text: "An electric landing light, if the flight is for hire", correct: true },
+            { text: "A spare flashlight", correct: false },
+            { text: "Two-position lights", correct: false }
+        ]
+    },
+    {
+        question: "Which is required equipment for powered aircraft during VFR night flights?",
+        choices: [
+            { text: "Anti-Collision light system", correct: true },
+            { text: "Auxiliary battery pack", correct: false },
+            { text: "Operational cockpit voice recorder", correct: false }
+        ]
+    },
+    {
+        question: "Approved flotation gear, readily available to each occupant, is required on each airplane if it is being flown for hire over water:",
+        choices: [
+            { text: "Beyond power-off gliding distance from shore", correct: true },
+            { text: "More than 25 miles from the nearest airport", correct: false },
+            { text: "Above 10,000 feet MSL", correct: false }
+        ]
+    },
+    {
+        question: "The maximum cumulative time that an emergency locator transmitter may be operated before the rechargeable battery must be recharged is:",
+        choices: [
+            { text: "60 minutes", correct: true },
+            { text: "30 minutes", correct: false },
+            { text: "90 minutes", correct: false }
+        ]
+    },
+    {
+        question: "If not equipped with required position lights, an aircraft must terminate flight:",
+        choices: [
+            { text: "At sunset", correct: true },
+            { text: "30 minutes before sunset", correct: false },
+            { text: "One hour after sunset", correct: false }
+        ]
+    },
+    {
+        question: "If an aircraft is not equipped with an electrical or anti-collision light system, no person may operate the aircraft:",
+        choices: [
+            { text: "After sunset to sunrise", correct: true },
+            { text: "Within controlled airspace", correct: false },
+            { text: "Over water", correct: false }
+        ]
+    },
+    {
+        question: "What are oxygen requirements when operating at cabin pressure altitudes above 15,000 feet MSL?",
+        choices: [
+            { text: "The flight crew and passengers must be provided with supplemental oxygen", correct: true },
+            { text: "The flight crew must use oxygen continuously", correct: false },
+            { text: "Only the passengers must use oxygen", correct: false }
+        ]
+    },
+    {
+        question: "In accordance with 14 CFR part 91, supplemental oxygen must be used by the required minimum flight crew for that time exceeding 30 minutes while at cabin pressure altitudes of:",
+        choices: [
+            { text: "12,500 feet MSL up to and including 14,000 feet MSL", correct: true },
+            { text: "14,500 feet MSL", correct: false },
+            { text: "10,000 feet MSL", correct: false }
+        ]
+    },
+    {
+        question: "A coded transponder equipped with altitude reporting equipment is required for:",
+        choices: [
+            { text: "Class A, B, and C airspace areas", correct: true },
+            { text: "Class D and E airspace areas", correct: false },
+            { text: "Class G airspace only", correct: false }
+        ]
+    },
+    {
+        question: "In the contiguous US, excluding the airspace at and below 2,500 feet AGL, an operable coded transponder equipped with mode C capability is required in all airspace above:",
+        choices: [
+            { text: "10,000 feet MSL", correct: true },
+            { text: "5,000 feet MSL", correct: false },
+            { text: "8,000 feet MSL", correct: false }
+        ]
+    },
+    {
+        question: "What is the minimum altitude and flight visibility required for acrobatic flight?",
+        choices: [
+            { text: "1500 feet AGL and 3 miles", correct: true },
+            { text: "2000 feet AGL and 5 miles", correct: false },
+            { text: "1000 feet AGL and 1 mile", correct: false }
+        ]
+    },
+    {
+        question: "What is required to operate an aircraft towing an advertising banner?",
+        choices: [
+            { text: "A certificate of waiver issued by the administrator", correct: true },
+            { text: "A special type rating", correct: false },
+            { text: "A commercial pilot license with 500 hours", correct: false }
+        ]
+    },
+    {
+        question: "Which is true with respect to operating limitations of a “restricted” category airplane?",
+        choices: [
+            { text: "No person may operate a “restricted” category airplane carrying passengers or property for compensation or hire", correct: true },
+            { text: "A restricted category airplane may be operated with passengers if it is under 5000 lbs", correct: false },
+            { text: "Restricted category airplanes may carry passengers for hire with a special endorsement", correct: false }
+        ]
+    },
+    {
+        question: "The carriage of passengers for hire by a commercial pilot is:",
+        choices: [
+            { text: "Not authorized in limited category", correct: true },
+            { text: "Authorized for commercial operations", correct: false },
+            { text: "Authorized with an additional endorsement", correct: false }
+        ]
+    },
+    {
+        question: "No person may operate an aircraft that has an experimental airworthiness certificate:",
+        choices: [
+            { text: "When carrying persons or property for hire", correct: true },
+            { text: "When carrying more than one passenger", correct: false },
+            { text: "Unless the aircraft is used solely for training", correct: false }
+        ]
+    },
+    {
+        question: "Which is true with respect to operating limitations of a primary category airplane?",
+        choices: [
+            { text: "No person may operate a primary category airplane carrying passengers or property for compensation or hire", correct: true },
+            { text: "Primary category airplanes are authorized for compensation if used for training", correct: false },
+            { text: "Primary category airplanes can be used for hire if they meet maintenance requirements", correct: false }
+        ]
+    },
+    {
+        question: "Assuring compliance with an airworthiness directive is the responsibility of:",
+        choices: [
+            { text: "Owner or operator of the aircraft", correct: true },
+            { text: "The FAA only", correct: false },
+            { text: "The aircraft manufacturer", correct: false }
+        ]
+    },
+    {
+        question: "Who is primarily responsible for maintaining an aircraft in an airworthy condition?",
+        choices: [
+            { text: "Owner or operator of the aircraft", correct: true },
+            { text: "Aircraft mechanic", correct: false },
+            { text: "Aircraft manufacturer", correct: false }
+        ]
+    },
+    {
+        question: "After the annual inspection has been completed and the aircraft has been returned to service, an appropriate notation should be made:",
+        choices: [
+            { text: "In the aircraft maintenance records", correct: true },
+            { text: "In the pilot's logbook", correct: false },
+            { text: "In the aircraft registration certificate", correct: false }
+        ]
+    },
+    {
+        question: "A standard airworthiness certificate remains in effect as long as the aircraft receives:",
+        choices: [
+            { text: "Required maintenance and inspections", correct: true },
+            { text: "Regular engine overhauls", correct: false },
+            { text: "A new inspection every 2 years", correct: false }
+        ]
+    },
+    {
+        question: "If an aircraft's operation in flight was substantially affected by an alteration or repair, the aircraft documents must show that it was test flown and approved for return to service by an appropriately rated pilot prior to being operated:",
+        choices: [
+            { text: "With passengers on board", correct: true },
+            { text: "Under visual flight rules (VFR)", correct: false },
+            { text: "For training purposes only", correct: false }
+        ]
+    },
+    {
+        question: "Which is true concerning required maintenance inspections?",
+        choices: [
+            { text: "An annual inspection may be substituted for a 100-hour inspection", correct: true },
+            { text: "A 100-hour inspection may be substituted for an annual inspection", correct: false },
+            { text: "There is no substitution for annual inspections", correct: false }
+        ]
+    },
+    {
+        question: "An aircraft carrying passengers for hire has been on a schedule of inspection every 100 hours of time in service. Under which condition, may that aircraft be operated beyond 100 hours without a new inspection?",
+        choices: [
+            { text: "The 100-hour limitation may be exceeded by not more than 10 hours if necessary to reach a place at which the inspection can be done", correct: true },
+            { text: "It cannot exceed 100 hours under any circumstance", correct: false },
+            { text: "The aircraft may be flown beyond 100 hours if authorized by the FAA", correct: false }
+        ]
+    },
+    {
+        question: "If an ATC transponder installed in an aircraft has not been tested, inspected, and found to comply with regulations within a specified period, what is the limitation on its use?",
+        choices: [
+            { text: "Its use is not permitted", correct: true },
+            { text: "It may be used under visual flight rules (VFR)", correct: false },
+            { text: "It may be used for up to 60 days", correct: false }
+        ]
+    },
+    {
+        question: "An ATC transponder is not to be used unless it has been tested, inspected, and found to comply with regulations within the preceding:",
+        choices: [
+            { text: "24 months", correct: true },
+            { text: "12 months", correct: false },
+            { text: "6 months", correct: false }
+        ]
+    },
+    {
+        question: "Aircraft maintenance records must include the current status of the:",
+        choices: [
+            { text: "Life-limited parts of each airframe, engine, propeller, rotor, and appliance", correct: true },
+            { text: "Time remaining for the next inspection", correct: false },
+            { text: "Owner's details and certificate number", correct: false }
+        ]
+    },
+    {
+        question: "Which is correct concerning preventive maintenance, when accomplished by a pilot?",
+        choices: [
+            { text: "A record of preventive maintenance must be entered in the maintenance records", correct: true },
+            { text: "The pilot must submit a report to the FAA after completing preventive maintenance", correct: false },
+            { text: "Preventive maintenance can be done without any record if it is within the pilot's scope", correct: false }
+        ]
+    },
+    {
+        question: "Which is true relating to airworthiness directives (ADs)?",
+        choices: [
+            { text: "Non-compliance with ADs renders an aircraft unairworthy", correct: true },
+            { text: "ADs are only recommendations, not mandatory", correct: false },
+            { text: "ADs must be complied with if the aircraft is operating for hire", correct: false }
+        ]
+    },
+    {
+        question: "A new maintenance record being used for an aircraft engine rebuilt by the manufacturer must include previous:",
+        choices: [
+            { text: "Changes as required by airworthiness directives", correct: true },
+            { text: "Time in service after the engine rebuild", correct: false },
+            { text: "Owner information for the aircraft", correct: false }
+        ]
+    },
+    {
+        question: "In what type of operation not regulated by 14 CFR part 119, a commercial pilot may act as PIC and receive compensation for services?",
+        choices: [
+            { text: "Non-stop flights within a 25SM radius of an airport to carry persons for intentional parachute jumps", correct: true },
+            { text: "Airline transport operations under 14 CFR part 121", correct: false },
+            { text: "Flying over international waters", correct: false }
+        ]
+    },
+    {
+        question: "In what type of operation not regulated by 14 CFR part 119, a commercial pilot may act as PIC and receive compensation for services?",
+        choices: [
+            { text: "Crop dusting, spraying, and bird chasing", correct: true },
+            { text: "Flying for a charter company under Part 135", correct: false },
+            { text: "Air tours in a city with a population over 1 million", correct: false }
+        ]
+    },
+    {
+        question: "What period of time must the person be hospitalized before an injury may be defined by the NTSB as a serious injury?",
+        choices: [
+            { text: "48 hours; commencing within 7 days after the date of injury", correct: true },
+            { text: "24 hours; within 7 days after the injury", correct: false },
+            { text: "72 hours; commencing within 10 days after the injury", correct: false }
+        ]
+    },
+    {
+        question: "When should notification of an aircraft accident be made to the NTSB if there was substantial damage and no injuries?",
+        choices: [
+            { text: "Immediately", correct: true },
+            { text: "Within 24 hours", correct: false },
+            { text: "Within 48 hours", correct: false }
+        ]
+    },
+    {
+        question: "NTSB part 830 requires an immediate notification as a result of which incident?",
+        choices: [
+            { text: "Any required flight crew member being unable to perform flight duties because of illness", correct: true },
+            { text: "An aircraft veering off the runway", correct: false },
+            { text: "A minor equipment malfunction", correct: false }
+        ]
+    },
+    {
+        question: "Which incident would require that the nearest NTSB field office be notified immediately?",
+        choices: [
+            { text: "In-flight fire", correct: true },
+            { text: "Minor collision on the ground", correct: false },
+            { text: "Flight delays due to weather", correct: false }
+        ]
+    },
+    {
+        question: "Which airborne incident would require that the nearest NTSB field office be notified immediately?",
+        choices: [
+            { text: "Flight control system malfunction or failure", correct: true },
+            { text: "A minor equipment malfunction", correct: false },
+            { text: "A temporary loss of radio communication", correct: false }
+        ]
+    },
+    {
+        question: "While taxiing for takeoff, a small fire burned insulation from a transceiver wire. What action would be required to comply with the NTSB part 830?",
+        choices: [
+            { text: "No notification or report is required", correct: true },
+            { text: "Immediate notification to NTSB", correct: false },
+            { text: "A written report to the FAA is required", correct: false }
+        ]
+    },
+    {
+        question: "While taxiing on the parking ramp, the landing gear, wheel, or tire was damaged by striking ground equipment. What action would be required to comply with NTSB part 830?",
+        choices: [
+            { text: "No notification or report is required", correct: true },
+            { text: "Notification of NTSB field office required", correct: false },
+            { text: "Report to the FAA within 48 hours", correct: false }
+        ]
+    },
+    {
+        question: "Notification to the NTSB is required when there is substantial damage:",
+        choices: [
+            { text: "Which adversely affects structural strength or flight characteristics", correct: true },
+            { text: "Caused by weather conditions", correct: false },
+            { text: "That affects the avionics system", correct: false }
+        ]
+    },
+    {
+        question: "During a flight, a fire, which was extinguished, burned the insulation from a transceiver wire. What action is required by regulations?",
+        choices: [
+            { text: "An immediate notification by the operator of the aircraft to the nearest NTSB field office", correct: true },
+            { text: "A report within 24 hours to the NTSB", correct: false },
+            { text: "No report required since the fire was extinguished", correct: false }
+        ]
+    },
+    {
+        question: "How many days after an accident is a report required to be filed with the nearest NTSB field office?",
+        choices: [
+            { text: "10 days", correct: true },
+            { text: "5 days", correct: false },
+            { text: "30 days", correct: false }
+        ]
+    },
+    {
+        question: "The operator of an aircraft that has been involved in an incident is required to submit a report to the nearest field office of the NTSB:",
+        choices: [
+            { text: "Only if requested to do so", correct: true },
+            { text: "Immediately, regardless of severity", correct: false },
+            { text: "Within 48 hours of the incident", correct: false }
+        ]
+    },
+    {
         question: "During aircraft operations on the ground, no person may taxi an aircraft on the movement area of an airport unless the person at the controls:",
         choices: [
             { text: "Has been authorized by the owner, the lessee, or a designated agent", correct: true },
@@ -123,7 +1227,7 @@ const questions = [
     {
         question: "Unless authorized by the appropriate ATC authority, no pilot may operate in VFR flight:",
         choices: [
-            { text: "Above FL200", correct: true },
+            { text: "Above 200", correct: true },
             { text: "At transonic and supersonic speeds", correct: true },
             { text: "Below 1000 feet AGL", correct: false }
         ]
@@ -1050,142 +2154,86 @@ const questions = [
     }
 ];
 
-// DOM Elements
-const questionElement = document.querySelector(".question");
-const answersElement = document.querySelector(".answers");
-const feedbackElement = document.querySelector(".feedback");
-const prevButton = document.querySelector(".prev-btn");
-const nextButton = document.querySelector(".next-btn");
-const progressBar = document.getElementById("progress-bar");
-const progressText = document.getElementById("progress-text");
-const remainingQuestionsText = document.getElementById("remaining-questions");
-
-// Shuffle function to randomize arrays
+// Shuffle function to randomize questions and choices
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-// Update the progress bar and text
-function updateProgressBar() {
-    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
-    const remaining = questions.length - (currentQuestionIndex + 1);
-    progressBar.style.width = `${progress}%`;
-    progressText.textContent = `${progress.toFixed(1)}%`; // Display percentage
-    remainingQuestionsText.textContent = `Remaining Questions: ${remaining} out of ${questions.length}`;
+// Render the quiz dynamically
+function renderQuiz() {
+    const quizContainer = document.getElementById('quiz-container');
+    quizContainer.innerHTML = ""; // Clear previous content
+
+    // Randomize the questions and render them
+    shuffle(questions).forEach((question, index) => {
+        const questionElement = document.createElement('div');
+        questionElement.classList.add('question');
+        questionElement.id = `question-${index + 1}`;
+
+        const questionText = document.createElement('p');
+        questionText.innerHTML = `<strong>${index + 1}. ${question.question}</strong>`;
+        questionElement.appendChild(questionText);
+
+        const choicesList = document.createElement('ul');
+        choicesList.classList.add('choices');
+        shuffle(question.choices).forEach((choice, choiceIndex) => {
+            const choiceElement = document.createElement('li');
+            const radioId = `q${index + 1}a${choiceIndex + 1}`;
+            choiceElement.innerHTML = `<input type="radio" id="${radioId}" name="q${index + 1}" value="${choice.correct ? '1' : '0'}" onclick="checkAnswer('q${index + 1}', this)"><label for="${radioId}">${choice.text}</label>`;
+            choicesList.appendChild(choiceElement);
+        });
+
+        questionElement.appendChild(choicesList);
+        const feedbackElement = document.createElement('p');
+        feedbackElement.classList.add('feedback');
+        feedbackElement.id = `feedback-${index + 1}`;
+        questionElement.appendChild(feedbackElement);
+
+        quizContainer.appendChild(questionElement);
+    });
 }
 
-// Display a question
-function displayQuestion(index) {
-    const currentQuestion = questions[index];
-    questionElement.innerHTML = `<strong>${index + 1}. ${currentQuestion.question}</strong>`;
-    answersElement.innerHTML = ''; // Clear previous answers
-    feedbackElement.textContent = ''; // Clear feedback
-    nextButton.disabled = true; // Disable next button initially
-    prevButton.disabled = index === 0; // Disable prev button on the first question
+// Check answers immediately after selecting an option
+function checkAnswer(questionId, selected) {
+    const feedbackElement = document.getElementById(`feedback-${questionId.slice(1)}`);
+    const labels = document.querySelectorAll(`label[for^='${questionId}']`);
 
-    // Shuffle choices if enabled
-    const choicesToDisplay = shuffleChoices ? shuffle(currentQuestion.choices) : currentQuestion.choices;
-
-    // Render choices
-    choicesToDisplay.forEach((choice) => {
-        const button = document.createElement('button');
-        button.textContent = choice.text;
-        button.classList.add('answer-button');
-        button.addEventListener('click', () => checkAnswer(button, choice, currentQuestion));
-        answersElement.appendChild(button);
+    // Remove any existing marks before adding new ones
+    labels.forEach(label => {
+        label.classList.remove('correct', 'incorrect');
     });
 
-    // Track attempted questions
-    attemptedQuestions[index] = attemptedQuestions[index] || { isCorrect: false, firstAttempt: true };
-
-    updateProgressBar();
-}
-
-// Check the answer
-function checkAnswer(selectedButton, choice, currentQuestion) {
-    const currentAttempt = attemptedQuestions[currentQuestionIndex];
-
-    if (choice.correct) {
-        selectedButton.classList.add("correct"); // Highlight correct answer
-        feedbackElement.textContent = "Correct! You chose the right answer.";
-        nextButton.disabled = false; // Enable Next button
-
-        if (currentAttempt.firstAttempt) {
-            score++; // Increment score on first correct attempt
-            currentAttempt.isCorrect = true;
-        }
-
-        // Disable all buttons
-        Array.from(answersElement.children).forEach((button) => button.disabled = true);
+    // Add feedback based on selected answer
+    if (selected.value === '1') {
+        feedbackElement.textContent = "Correct!";
+        selected.parentElement.querySelector('label').classList.add("correct");
     } else {
-        selectedButton.classList.add("incorrect"); // Highlight wrong answer
-        feedbackElement.textContent = "Incorrect! Please try again.";
-        currentAttempt.firstAttempt = false; // Mark as not first attempt
-    }
-}
-
-// Go to next question
-function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        displayQuestion(currentQuestionIndex);
-    } else {
-        showResult();
-    }
-}
-
-// Go to previous question
-function previousQuestion() {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        displayQuestion(currentQuestionIndex);
-    }
-}
-
-// Show result
-function showResult() {
-    const percentage = ((score / questions.length) * 100).toFixed(2);
-    questionElement.innerHTML = `<div class="final-score">Quiz Finished! Your final score is: ${score}/${questions.length} (${percentage}%)</div>`;
-    answersElement.innerHTML = ''; // Clear answers
-    feedbackElement.textContent = '';
-    nextButton.style.display = 'none'; // Hide Next button
-    prevButton.style.display = 'none'; // Hide Prev button
-
-    // Check if restart button already exists before creating a new one
-    if (!document.querySelector('.reset-btn')) {
-        // Create Restart button
-        const restartButton = document.createElement('button');
-        restartButton.textContent = 'Restart Quiz';
-        restartButton.classList.add('reset-btn');
-        restartButton.addEventListener('click', resetQuiz);
-        answersElement.appendChild(restartButton); // Add Restart button
+        feedbackElement.textContent = "Incorrect.";
+        selected.parentElement.querySelector('label').classList.add("incorrect");
     }
 }
 
 // Reset the quiz
 function resetQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    attemptedQuestions = []; // Reset attempted questions
-    nextButton.style.display = 'inline-block'; // Show Next button
-    prevButton.style.display = 'inline-block'; // Show Prev button
-    displayQuestion(currentQuestionIndex); // Show first question
+    // Clear all radio buttons
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => radio.checked = false);
+
+    // Clear all feedback and remove marks
+    const feedbacks = document.querySelectorAll('.feedback');
+    const labels = document.querySelectorAll('label');
+
+    feedbacks.forEach(feedback => {
+        feedback.textContent = "";
+    });
+
+    labels.forEach(label => {
+        label.classList.remove("correct", "incorrect");
+    });
+
+    // Re-render the quiz with randomized questions and choices
+    renderQuiz();
 }
 
-// Start the quiz and hide the start page
-function startQuiz() {
-    shuffleQuestions = document.getElementById("shuffle-questions").checked;
-    shuffleChoices = document.getElementById("shuffle-choices").checked;
-
-    document.getElementById("start-page").style.display = 'none'; // Hide start page
-    document.getElementById("quiz-container").style.display = 'block'; // Show quiz content
-
-    if (shuffleQuestions) shuffle(questions); // Shuffle questions if enabled
-
-    displayQuestion(currentQuestionIndex); // Show first question
-}
-
-// Initialize the quiz
-window.onload = () => {
-    document.getElementById("start-page").style.display = 'block'; // Show start page
-};
+// Initial render when the page loads
+window.onload = renderQuiz;
