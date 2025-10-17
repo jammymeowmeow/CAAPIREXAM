@@ -3,38 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPL Air Law Quiz</title>
+    <title>CAAP CPL Air Law Reviewer</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Start Page -->
-    <div id="start-page" class="start-page">
-        <h1>Welcome to the CPL Air Law Quiz</h1>
-        <div class="shuffle-options">
-            <label for="shuffle-questions">Shuffle Questions</label>
-            <input type="checkbox" id="shuffle-questions">
-            <label for="shuffle-choices">Shuffle Choices</label>
-            <input type="checkbox" id="shuffle-choices">
-        </div>
-        <button onclick="startQuiz()" class="start-btn">Start Quiz</button>
-    </div>
+    <h1>CPL Air Law Multiple-Choice Reviewer</h1>
+    
+    <div id="quiz-container"></div>
 
-    <!-- Quiz Container -->
-    <div id="quiz-container" class="quiz-container" style="display: none;">
-        <div id="progress-bar-container">
-            <div id="progress-bar"></div>
-            <div id="progress-text">Progress Text</div>
-        </div>
-            <div id="remaining-questions">Remaining Questions: 5</div>
-        </div>
-        <div class="question"></div>
-        <div class="answers"></div>
-        <div class="feedback"></div>
-        <div class="navigation-buttons">
-            <button class="prev-btn" onclick="previousQuestion()">Previous</button>
-            <button class="next-btn" onclick="nextQuestion()">Next</button>
-        </div>
-    </div>
+    <button class="reset-btn" onclick="resetQuiz()">Reset</button>
+
 
     <script src="quiz.js"></script>
 </body>
