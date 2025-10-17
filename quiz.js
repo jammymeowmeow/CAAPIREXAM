@@ -9,11 +9,11 @@ let shuffleChoices = false;
 // Question data
 const questions = [
     {
-                question: " an emergency situation, which endangers the safety of the aircraft or persons, necessitates the taking of action, which involves a violation of regulations or procedures by any crewmember, the pilot - in - command shall submit a report on any such violation to the CAAP within:",
+                question: "On the taxi check, the magnetic compass should",
                 choices: [
-                    { text: "10 days", correct: true },
-                    { text: "7 days", correct: false },
-                    { text: "2 days", correct: false }
+                    { text: "swing freely and indicate known headings.", correct: true },
+                    { text: "exhibit the same number of degrees of dip as the latitude.", correct: false },
+                    { text: "swing opposite to the direction of turn when turning from north.", correct: false }
                 ]
             },
             {
