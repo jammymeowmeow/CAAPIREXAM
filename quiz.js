@@ -16,6 +16,7 @@ const questions = [
       { text: "swing freely and indicate known headings.", correct: true }
     ]
   },
+
      {
     question: "What should be the indication on the magnetic compass as you roll into a standard-rate turn to the left from an east heading in the Northern Hemisphere?",
     choices: [
