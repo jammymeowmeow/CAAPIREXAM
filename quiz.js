@@ -2107,8 +2107,6 @@ const questions = [
   }
 ];
 
-];
-
 // DOM Elements
 const questionElement = document.querySelector(".question");
 const answersElement = document.querySelector(".answers");
