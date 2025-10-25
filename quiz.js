@@ -17,7 +17,7 @@ const questions = [
       { text: "swing freely and indicate known headings.", correct: true }
     ]
   },
-  {
+     {
     question: "What should be the indication on the magnetic compass as you roll into a standard-rate turn to the left from an east heading in the Northern Hemisphere?",
     choices: [
       { text: "The compass will remain on east for a short time, then gradually catch up to the magnetic heading of the aircraft.", correct: false },
