@@ -8,7 +8,6 @@ let shuffleChoices = false;
 
 // Question data
 const questions = [
-    const quizQuestions = [
   {
     question: "On the taxi check, the magnetic compass should",
     choices: [
