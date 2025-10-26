@@ -164,8 +164,8 @@ const questions = [
   {
     question: "Which altitude is indicated when the altimeter is set to 29.92\" Hg?",
     choices: [
-      { text: "Standard.", correct: true },
-      { text: "Pressure.", correct: false },
+      { text: "Standard.", correct: false },
+      { text: "Pressure.", correct: true },
       { text: "Density.", correct: false }
     ]
   },
